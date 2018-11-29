@@ -40,8 +40,8 @@ class AbilityTest < ActiveSupport::TestCase
       assert @jblake_ability.can? :new, Investigation
       assert @jblake_ability.can? :create, Investigation
       # failing these tests
-      #assert @jblake_ability.can? :update, @lacey
-      #deny @jblake_ability.can? :update, @pussyfoot
+      assert @jblake_ability.can? :update, @lacey
+      deny @jblake_ability.can? :update, @pussyfoot
       assert @jblake_ability.can? :manage, InvestigationNote
       assert @jblake_ability.can? :read, Assignment
       assert @jblake_ability.can? :read, Crime

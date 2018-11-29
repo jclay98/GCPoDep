@@ -56,9 +56,9 @@ class Ability
       can :new, Investigation
       can :create, Investigation
 
-      can :update, Investigation do |this_inv| 
-        #my_investigations = user.officer.investigations.select { |i| i.officer.user.id }
-        #my_investigations.include? this_inv.id
+      can :update, Investigation do |inv| 
+        my_investigations = user.officer.investigations.is_open.select { |i| i.id }
+        my_investigations.include? inv
       end
 
       can :show, Unit do |unit|  
