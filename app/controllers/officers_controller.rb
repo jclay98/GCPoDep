@@ -1,5 +1,6 @@
 class OfficersController < ApplicationController
   before_action :set_officer, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_login
 
 

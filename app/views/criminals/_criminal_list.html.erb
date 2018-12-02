@@ -1,0 +1,39 @@
+<h4>Criminals in GCPD</h4>
+
+<% if @criminals.empty? %>
+  <p>There are no criminals at this time.</p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Alias</th>
+
+      <th class="align_center">Edit</th>
+    </thead>
+    <% for criminal in @criminals %>
+      <tr>
+        <td><%= best_in_place criminal, :name, as: :input %></td>
+        <td><%= criminal.aka %></td>
+
+
+        <td class="align_center">
+          <%= link_to edit_criminal_path(criminal) do %>
+              <i class="material-icons">edit</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <% if state == "all criminals" %>
+    <%= will_paginate @criminals, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <% end %>
+  <% if state == "convicted felons" %>
+    <%= will_paginate @felons, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <% end %>
+  <% if state == " enhanced powers" %>
+    <%= will_paginate @powers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <% end %>
+<% end %>

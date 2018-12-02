@@ -1,6 +1,9 @@
 class AssignmentsController < ApplicationController
   before_action :check_login
 
+  def index
+    @assignments = Assignment.current.chronological.all.to_a
+  end
 
   def new
     @assignment = Assignment.new

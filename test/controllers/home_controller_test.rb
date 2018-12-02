@@ -2,27 +2,27 @@ require "test_helper"
 
 describe HomeController do
   it "should get index" do
-    get home_index_url
+    get home_path
     value(response).must_be :success?
   end
 
   it "should get about" do
-    get home_about_url
+    get about_path
     value(response).must_be :success?
   end
 
   it "should get contact" do
-    get home_contact_url
+    get contact_path
     value(response).must_be :success?
   end
 
   it "should get privacy" do
-    get home_privacy_url
+    get privacy_path
     value(response).must_be :success?
   end
 
   it "should get search" do
-    get home_search_url
+    get search_path
     value(response).must_be :success?
   end
 
