@@ -7,7 +7,9 @@
   <table class="striped highlight">
     <thead>
       <th>Unit</th>
-
+      <th id="number">Number of Active Officers</th>
+      <th id="number">Number of Open Cases</th>
+    
 
       <th class="align_center">Edit</th>
     </thead>
@@ -15,9 +17,8 @@
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to unit.name, unit_path(unit) %></td>
-
-
-
+        <td id="number"><%= unit.number_of_active_officers %></td>
+        <td id="number"><%= unit.number_of_unique_open_investigations %></td>
 
 
       <td class="align_center">

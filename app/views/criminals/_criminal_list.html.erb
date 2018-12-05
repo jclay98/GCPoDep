@@ -13,7 +13,7 @@
     </thead>
     <% for criminal in @criminals %>
       <tr>
-        <td><%= best_in_place criminal, :name, as: :input %></td>
+        <td><%= link_to criminal.name, criminal_path(criminal) %></td>
         <td><%= criminal.aka %></td>
 
 
@@ -28,12 +28,12 @@
   <p class="supertiny"></p>
   <br />
   <% if state == "all criminals" %>
-    <%= will_paginate @criminals, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <%= will_paginate @criminals, :param_name => 'criminals', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
   <% end %>
   <% if state == "convicted felons" %>
-    <%= will_paginate @felons, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <%= will_paginate @felons, :param_name => 'felons', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
   <% end %>
   <% if state == " enhanced powers" %>
-    <%= will_paginate @powers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <%= will_paginate @powers, :param_name => 'powers', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
   <% end %>
 <% end %>

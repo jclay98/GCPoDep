@@ -7,6 +7,11 @@ class CriminalsController < ApplicationController
     @powers = Criminal.enhanced.alphabetical.all.paginate(page: params[:page]).per_page(10)
   end
 
+  def show
+  	@criminal = Criminal.find(params[:id])
+  	@suspects = @criminal.suspects.current.chronological
+  end
+
   def new
     @criminal = Criminal.new
   end

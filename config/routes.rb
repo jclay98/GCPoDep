@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
+  get 'users/new'
+
+  get 'users/edit'
+
+  get 'user/index'
+
+  get 'user/new'
+
+  get 'user/edit'
+
   # Semi-static page routes
   get 'home', to: 'home#index', as: :home
   get 'home/about', to: 'home#about', as: :about

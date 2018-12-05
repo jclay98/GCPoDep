@@ -1,6 +1,5 @@
 class OfficersController < ApplicationController
   before_action :set_officer, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_login
 
 
@@ -23,13 +22,21 @@ class OfficersController < ApplicationController
 
   def create
     @officer = Officer.new(officer_params)
+    @user = User.new(user_params)
     @user.active = true
-    if @officer.save
-      flash[:notice] = "Successfully created #{@officer.proper_name}."
-      redirect_to officer_path(@officer) 
-    else
+    @user.role = "officer"
+    if !@user.save
+      @officer.valid?
       render action: 'new'
-    end      
+    else
+      @officer.user_id = @user.id
+      if @officer.save
+        flash[:notice] = "Successfully created #{@officer.proper_name}."
+        redirect_to officer_path(@officer) 
+      else
+        render action: 'new'
+      end  
+    end    
   end
 
   def update
@@ -57,6 +64,8 @@ class OfficersController < ApplicationController
   def officer_params
     params.require(:officer).permit(:first_name, :last_name, :rank, :ssn, :active, :unit_id)
   end
-
+  def user_params
+    params.require(:user).permit(:username, :role, :password, :password_confirmation, :active)
+  end
 
 end

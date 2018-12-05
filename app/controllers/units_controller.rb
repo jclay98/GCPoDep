@@ -42,9 +42,16 @@ class UnitsController < ApplicationController
     end
   end
 
-
-
-
+  def destroy
+    @unit = Unit.find(params[:id])
+    if @unit.destroy
+      redirect_to units_url, notice: "Successfully removed #{@unit.name} from the GCPD system."
+    else
+      @unit = Unit.find(params[:id])
+      @officers = @unit.officers.active.alphabetical.paginate(page: params[:page]).per_page(10)
+      render action: 'show'
+    end
+  end
 
 
   private

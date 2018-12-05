@@ -1,9 +1,9 @@
 html {
   // Preloaded with four fonts; uncomment the one you prefer or add your own preferred font
-  font-family: 'Nunito', sans-serif;
+  // font-family: 'Nunito', sans-serif;
   // font-family: 'Bitter', serif;
   // font-family: 'Josefin Sans', sans-serif;
-  // font-family: 'Varela Round', sans-serif;
+   font-family: 'Varela Round', sans-serif;
 }
 
 body {
@@ -90,6 +90,10 @@ table.highlight > tbody > tr:hover {
 
 table.lined > tbody > tr {
   border-bottom: 1px solid #f5f5f5;
+}
+
+#number {
+  text-align: center;
 }
 
 td.align_right {
