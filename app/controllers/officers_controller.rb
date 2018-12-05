@@ -51,8 +51,17 @@ class OfficersController < ApplicationController
     end
   end
 
-
-
+  def destroy
+    @officer = Officer.find(params[:id])
+    if @officer.destroy
+      redirect_to officers_url, notice: "Successfully removed #{@officer.name} from the GCPD system."
+    else
+      @officer = Officer.find(params[:id])
+      @current_assignments = @officer.assignments.current.chronological
+      @past_assignments = @officer.assignments.past.chronological
+      render action: 'show'
+    end
+  end
 
 
   private
@@ -60,7 +69,7 @@ class OfficersController < ApplicationController
   def set_officer
     @officer = Officer.find(params[:id])
   end
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Only allow the white list through.
   def officer_params
     params.require(:officer).permit(:first_name, :last_name, :rank, :ssn, :active, :unit_id)
   end

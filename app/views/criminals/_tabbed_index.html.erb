@@ -3,6 +3,7 @@
 
     <tab name="all criminals" v-bind:selected="true">
       <%= render :partial => "criminal_list", locals: {criminals: @criminals, state: 'all criminals'} %>
+      <%= will_paginate @criminals, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
     </tab>
 
     <tab name="convicted felons">

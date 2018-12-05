@@ -2,9 +2,9 @@ class CriminalsController < ApplicationController
   before_action :check_login
 
   def index
-    @criminals = Criminal.alphabetical.all.paginate(page: params[:page]).per_page(10)
-    @felons = Criminal.prior_record.alphabetical.all.paginate(page: params[:page]).per_page(10)
-    @powers = Criminal.enhanced.alphabetical.all.paginate(page: params[:page]).per_page(10)
+    @criminals = Criminal.alphabetical.all.paginate(page: params[:page]).per_page(15)
+    @felons = Criminal.prior_record.alphabetical.all.to_a
+    @powers = Criminal.enhanced.alphabetical.all.to_a
   end
 
   def show

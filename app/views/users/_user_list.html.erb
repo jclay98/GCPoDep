@@ -10,7 +10,6 @@
   </thead>
   <% for user in @users %>
     <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
-      <td><%= user.officer.name %></td>
       <td><%= user.username %></td>
       <td class="align_center"><%= user.role %></td>
       <td class="align_center"><%= user.active ? "Yes" : "No" %></td>
