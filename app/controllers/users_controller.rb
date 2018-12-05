@@ -13,12 +13,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.role = "commish" if current_user.role?(:commish)
+    @user.role = "chief" if current_user.role?(:chief)
   end
 
   def create
     @user = User.new(user_params)
-    @user.role = "commish" if current_user.role?(:commish)
+    @user.role = "chief" if current_user.role?(:chief)
     if @user.save
       flash[:notice] = "Successfully added #{@user.proper_name} as a user."
       redirect_to users_url
