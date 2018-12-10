@@ -17,13 +17,13 @@
             <tr>
               <td><%= link_to investigation.title, investigation_path(investigation) %></td>
               <td><%= investigation.date_opened.strftime("%m/%d/%y") %></td>
-              <td>
+              <td class="align_center">
                 <% if can? :add, Suspect %>
                   <%= link_to "Add", new_suspect_path(id: investigation.id)%>
                 <% end %>
                 &nbsp;
               </td>
-              <td>
+              <td class="align_center">
                 <% if can? :add, InvestigationNote %>
                   <%= link_to "Add", new_investigation_note_path(investigation_id: investigation.id, officer_id: @officer.id) %>
                   <% end %>

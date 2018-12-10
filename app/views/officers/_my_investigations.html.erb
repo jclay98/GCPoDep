@@ -27,10 +27,12 @@
       </div>
       <% if can? :new, Suspect %>
       <div class="card-action">
-        <%= link_to "Add a new suspect", new_suspect_path(criminal_id: @criminal.id) %>
+        <p>Add a new suspect</p>
+        <!--%= link_to "Add a new suspect", new_suspect_path(criminal_id: @criminal.id) %-->
       </div>
       <% end %>
-      <%= link_to "Add a new Note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: @officer.id) %>
+      <p>Add a new Note</p>
+      <!--%= link_to "Add a new Note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: @officer.id) %-->
     </div>
   </div>
 
