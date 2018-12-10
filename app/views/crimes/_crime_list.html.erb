@@ -8,6 +8,7 @@
     <thead>
       <th>Crime</th>
       <th>Level</th>
+      <th>Active</th>
 
 
       <th class="align_center">Edit</th>
@@ -16,7 +17,7 @@
       <tr>
         <td><%= best_in_place crime, :name, as: :input %><%# crime.name %></td>
         <td><%= crime.felony ? "Felony" : "Misdemeanor" %></td>
-
+        <td><%= best_in_place crime, :active, as: :checkbox, collection: {'false' => "No", 'true' => "Yes"} %></td>
 
 
 

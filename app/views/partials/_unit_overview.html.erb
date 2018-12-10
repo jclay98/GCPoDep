@@ -1,0 +1,29 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div class="card">
+  <div class="card-content"> 
+    <h4>Unit Overview</h4>
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<table id="datatable">
+	    <thead>
+	        <tr>
+	            <th></th>
+	            <th>Open Cases</th>
+	            <th>Closed Cases</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    	<% for unit in @units %>
+	        <tr>
+	            <th><%= unit.name %></th>
+	            <td><%= unit.officers.active.count %></td>
+	            <td><%= unit.officers.inactive.count %></td>
+	        </tr>
+	        <% end %>
+	    </tbody>
+	</table>
+  </div>
+</div>

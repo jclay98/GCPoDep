@@ -8,6 +8,10 @@ class InvestigationsController < ApplicationController
     @closed_investigations = Investigation.is_closed.chronological.paginate(page: params[:page]).per_page(10)
     @closed_unsolved = Investigation.is_closed.unsolved.chronological.to_a.reverse.take(5)
     @with_batman = Investigation.with_batman.chronological.to_a.reverse.take(5)
+    if logged_in? && current_user.role?(:officer)
+      @officer = current_user.officer
+      @my_investigations = @officer.investigations.chronological.reverse
+    end
   end
 
   def show
@@ -17,6 +21,7 @@ class InvestigationsController < ApplicationController
     @case_crimes = @investigation.crimes.alphabetical.to_a
     @officer = Officer.new
     @notes = @investigation.investigation_notes.chronological
+    #@criminal = Criminal.new
   end
 
   def new
@@ -29,7 +34,9 @@ class InvestigationsController < ApplicationController
   def create 
     @investigation = Investigation.new(investigation_params)
     if @investigation.save
-      redirect_to investigations_path, notice: "Successfully added #{@investigation.title} to GCPD."
+      redirect_to new_crime_investigation_path(investigation_id: @investigation.id), notice: "Successfully added #{@investigation.title} to GCPD."
+
+      #redirect_to investigations_path, notice: "Successfully added #{@investigation.title} to GCPD."
     else
       render action: 'new'
     end

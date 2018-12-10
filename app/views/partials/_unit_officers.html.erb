@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-content"> 
+    <h4>Unit Officers:</h4>
+	<% if @unit_officers.empty? %>
+	  <p>There are no officers in this unit</p>
+	<% else %>
+	  <table class="striped highlight">
+	    <thead>
+	      <th>Officer</th>
+	      <th>Rank</th>
+      	  <th>Active</th>
+	    </thead>
+	    <% for officer in @unit_officers %>
+	      <tr>
+	        <td><%= link_to officer.name, officer_path(officer) %></td>
+	        <td><%= officer.rank %></td>
+	        <td><%= best_in_place officer, :active, as: :checkbox, collection: {'false' => "No", 'true' => "Yes"} %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+    <% end %>
+  </div>
+</div>

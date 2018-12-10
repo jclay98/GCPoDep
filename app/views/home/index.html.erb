@@ -1,14 +1,9 @@
-<div class="row">
-  <div class="col s8">
-    <div class="card ">
-      <div class="card-content">
-        <h4>Welcome to the GCPD Crime Tracking System</h4>
-        <p>This is the most amazing crime tracker ever and the 
-          Gotham City Police Department is proud to be the owner 
-          of this great software.  Hopefully we will be able to 
-          do a better job fighting crime so that the Dark Knight's 
-          services are no longer needed.</p>
-      </div>
-    </div>
-  </div>
-</div>
+<% if logged_in? && current_user.role?(:commish) %>
+      <%= render :partial => "index_commish" %>
+    <% elsif logged_in? && current_user.role?(:chief) %>
+      <%= render :partial => "chief_dash" %>
+    <% elsif logged_in? && current_user.role?(:officer) %>
+      <%= render :partial => "index_officer" %>
+    <% else %>
+      <%= render :partial => "index_guest" %>
+    <% end %>

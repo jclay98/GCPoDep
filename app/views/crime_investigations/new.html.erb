@@ -1,0 +1,27 @@
+
+<div class="row">
+  <div class="col s8">
+    <h4>Add crime to <%= @investigation.title %></h4>
+    <%= simple_form_for(@crime_investigation) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <p>&nbsp;&nbsp;&nbsp;Crimes committed: 
+        	<% @investigation.crimes.each do |crime| %> 
+        		<%= crime.name %><br />
+        	<% end %>
+        </p>
+        <p><h6><em>&nbsp;&nbsp;&nbsp;select new crime </em></h6></p>
+
+        <div class="form-inputs">
+          <%= f.input :investigation_id, as: :hidden, input_html: { value: @investigation.id } %>
+          <%= f.input :crime_id, collection: Crime.alphabetical.to_a, include_blank: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-actions col s8">
+          <%= f.button :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

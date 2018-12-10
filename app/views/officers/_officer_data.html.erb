@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-content">
-    <h5>Officer Information for <%= @officer.proper_name %></h5><br />
+    <h5>Officer Information for <%=best_in_place @officer, :first_name, as: :input %>
+      <%= best_in_place @officer, :last_name, as: :input %>
+    </h5><br />
 
     <b>Current Unit:&nbsp;&nbsp;</b>
       <%= link_to @officer.unit.name, unit_path(@officer.unit) %>
@@ -10,7 +12,7 @@
       <br /><br />
 
     <b>Current Rank:&nbsp;&nbsp;</b>
-      <%= @officer.rank %><br /><br />
+      <%= best_in_place @officer, :rank, as: :input %><br /><br />
 
     <b>SSN:&nbsp;&nbsp;</b>
       <%= @officer.ssn %><br /><br />
@@ -19,6 +21,6 @@
       <%= @officer.user.username %><br /><br />
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>
-      <%= @officer.active ? "Yes" : "No" %><br><br><br>
+      <%= best_in_place @officer, :active, as: :checkbox, collection: {'false' => "No", 'true' => "Yes"} %><br><br><br>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h5>Information for <%= @unit.name %></h5><br />
+    <h5>Information for <%= best_in_place @unit, :name, as: :input %></h5><br />
 
     <b>Number of Active Officers:&nbsp;&nbsp;</b>
       <%= @unit.number_of_active_officers %>
@@ -10,5 +10,7 @@
       <%= @unit.number_of_unique_open_investigations %>
       <br /><br />
 
+    <b>Active in GCPD?&nbsp;&nbsp;</b>
+      <%= best_in_place @unit, :active, as: :checkbox, collection: {'false' => "No", 'true' => "Yes"} %><br><br><br>
   </div>
 </div>

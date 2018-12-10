@@ -1,5 +1,5 @@
 <h4><%= state.capitalize %> Investigations in GCPD</h4>
-
+<%= render :partial => "partials/title_with_search", locals: {title: "Investigations in GCPD"} %>
 <% if investigations.empty? %>
   <p>There are no <%= state.downcase %> investigations at this time.</p>
 <% else %>

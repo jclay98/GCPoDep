@@ -20,7 +20,6 @@ class AssignmentsController < ApplicationController
     if @assignment.save
       flash[:notice] = "Successfully added assignment."
       redirect_to officer_path(@assignment.officer)
-
     else
       @officer     = Officer.find(params[:assignment][:officer_id])
       render action: 'new', locals: { officer: @officer }

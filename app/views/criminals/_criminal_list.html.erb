@@ -1,5 +1,4 @@
-<h4>Criminals in GCPD</h4>
-
+<%= render :partial => "partials/title_with_search", locals: {title: "Criminals in GCPD"} %>
 <% if @criminals.empty? %>
   <p>There are no criminals at this time.</p>
 <% else %>

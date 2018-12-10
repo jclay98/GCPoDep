@@ -9,7 +9,8 @@ class CriminalsController < ApplicationController
 
   def show
   	@criminal = Criminal.find(params[:id])
-  	@suspects = @criminal.suspects.current.chronological
+    @current_suspects = @criminal.suspects.current
+  	@investigations = @criminal.investigations.is_open.chronological
   end
 
   def new
@@ -30,7 +31,7 @@ class CriminalsController < ApplicationController
   end
 
   def update
-    @criminal = criminal.find(params[:id])
+    @criminal = Criminal.find(params[:id])
     respond_to do |format|
       if @criminal.update_attributes(criminal_params)
         format.html { redirect_to @criminal, notice: "Updated information" }
@@ -41,6 +42,18 @@ class CriminalsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @criminal = Criminal.find(params[:id])
+    if @criminal.destroy
+      redirect_to criminals_url, notice: "Successfully removed #{@criminal.name} from the GCPD system."
+    else
+      @criminal = Criminal.find(params[:id])
+  	  @investigations = @criminal.investigations.current.chronological
+      render action: 'show'
+    end
+  end
+
 
 
 

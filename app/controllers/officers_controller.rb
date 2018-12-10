@@ -1,11 +1,12 @@
 class OfficersController < ApplicationController
   before_action :set_officer, only: [:show, :edit, :update, :destroy]
   before_action :check_login
-
+  authorize_resource
 
   def index
     @active_officers = Officer.active.alphabetical.paginate(page: params[:page]).per_page(10)
     @inactive_officers = Officer.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    #format.json { respond_with_bip(@active_officers) }
   end
 
   def show
@@ -24,7 +25,9 @@ class OfficersController < ApplicationController
     @officer = Officer.new(officer_params)
     @user = User.new(user_params)
     @user.active = true
-    @user.role = "officer"
+    unless current_user.role?(:commish)
+      @user.role = "officer"
+    end
     if !@user.save
       @officer.valid?
       render action: 'new'
@@ -42,11 +45,11 @@ class OfficersController < ApplicationController
   def update
     respond_to do |format|
       if @officer.update_attributes(officer_params)
-        format.html { redirect_to @officer, notice: "Updated all information" }
-        
+        format.html { redirect_to @officer, notice: "Successfully updated #{@officer.proper_name}" }
+        format.json { respond_with_bip(@officer) }
       else
         format.html { render :action => "edit" }
-        
+        format.json { respond_with_bip(@officer) }
       end
     end
   end
@@ -64,6 +67,7 @@ class OfficersController < ApplicationController
   end
 
 
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_officer
@@ -74,7 +78,7 @@ class OfficersController < ApplicationController
     params.require(:officer).permit(:first_name, :last_name, :rank, :ssn, :active, :unit_id)
   end
   def user_params
-    params.require(:user).permit(:username, :role, :password, :password_confirmation, :active)
+    params.require(:officer).permit(:username, :role, :password, :password_confirmation, :active)
   end
 
 end

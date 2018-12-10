@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-content"> 
+    <h4>Unassigned Investigations:</h4>
+	<% if @unit_investigations.empty? %>
+	  <p>There are no unassigned investigations</p>
+	<% else %>
+	  <table class="striped highlight">
+	    <thead>
+	      <th>Investigation</th>
+	      <th>Opened On</th>
+	    </thead>
+	    <% for investigation in @unit_investigations %>
+	      <tr>
+	        <td><%= link_to investigation.name, investigation_path(investigation) %></td>
+	        <td><%= investigation.rank %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+    <% end %>
+  </div>
+</div>

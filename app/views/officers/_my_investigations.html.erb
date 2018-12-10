@@ -1,0 +1,40 @@
+<% if @my_investigations.empty? %>
+  <p>You have no investigations at this time.</p>
+<% else %>
+  <% @my_investigations.each do |investigation| %>
+  <!--%= for investigation in @my_investigations %-->
+  <div class="card">
+    <div class="card-content"> 
+      <b><%= link_to investigation.title, investigation_path(investigation) %>:&nbsp;&nbsp;</b><br /><br />
+      <b>Date opened:&nbsp;&nbsp;</b>
+      <%= investigation.date_opened.strftime("%B %d, %Y") %><br /><br />
+      <b>Case solved?&nbsp;&nbsp;</b>
+            <%= investigation.solved ? "Yes" : "No" %><br /><br />
+      <div class="card">
+        <div class="card-content">  
+          <b>Notes:&nbsp;&nbsp;</b><br />
+            <!--% @recent_notes.each do |note| %-->
+            <% for note in investigation.investigation_notes %> 
+              <div class="card yellow lighten-4">
+            <div class="card-content">  
+                <p class="note"><%= note.date.strftime("%m/%d/%y") %></p><br>
+                <p><%= note.content %></p><br>
+                <p class="note">--<%= note.officer.proper_name %></p><br>
+            </div>
+            </div>
+            <% end %>
+            <br /><%= link_to "Add a new Note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: @officer.id) %>
+          <br /><br />
+        </div>
+      </div>
+      <% if can? :new, Suspect %>
+      <div class="card-action">
+        <!--%= link_to "Add a new suspect", new_suspect_path(criminal_id: @criminal.id) %-->
+      </div>
+      <% end %>
+      <%= link_to "Add a new Note", new_investigation_note_path(investigation_id: investigation.id, officer_id: @officer.id) %>
+    </div>
+  </div>
+
+    <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-content"> 
+    <h4>Unassigned Officers:</h4>
+	<% if @unassigned_officers.empty? %>
+	  <p>There are no unassigned officers</p>
+	<% else %>
+	  <table class="striped highlight">
+	    <thead>
+	      <th>Officer</th>
+	      <th>Rank</th>
+	    </thead>
+	    <% for officer in @unassigned_officers %>
+	      <tr>
+	        <td><%= link_to officer.name, officer_path(officer) %></td>
+	        <td><%= officer.rank %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+    <% end %>
+  </div>
+</div>

@@ -30,11 +30,47 @@ $(function() {
 });
 
 // Best in place functionality
-
-
+$(document).ready(function() {
+  jQuery(".best_in_place").best_in_place();
+});
 
 
 // Search submit on enter
+$(document).ready(function() {
+  function submitForm() {
+    document.getElementById("search").submit();
+  }
+  document.onkeydown = function () {
+    if (window.event.keyCode == '13') {
+        submitForm();
+    }
+  }
+});
 
+//Highcharts
+
+Highcharts.chart('container', {
+    data: {
+        table: 'datatable'
+    },
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: ''
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: '#'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
 
 

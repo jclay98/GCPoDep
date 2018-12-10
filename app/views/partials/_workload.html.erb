@@ -1,0 +1,32 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div class="card">
+  <div class="card-content" id="datatable">  
+  	<h4>Unit Workload </h4>
+	<% if @unit_officers.empty? %>
+	  <p>There are no officers in this unit.</p>
+	<% else %>
+	  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	  <table class="striped highlight">
+	    <thead>
+	      <tr>
+	      	<% for officer in @unit_officers %>
+	      	  <th><%= link_to officer.name, officer_path(officer) %></th>
+	      	<% end %>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <% for officer in @unit_officers %>
+	        <tr>
+	          <td><%= link_to officer.name, officer_path(officer) %></td>
+	          <td><%= officer.assignments.current.count %></td>
+	        </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+    <% end %>
+  </div>
+</div>
