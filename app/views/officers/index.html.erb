@@ -4,7 +4,7 @@
                                                          secondary: nil,
                                                          sidebar: "officers_sidebar"} %>
 <% elsif logged_in? && current_user.role?(:chief) %>
-  <%= render partial: "partials/unit_officers", locals: {object: @unit} %>
+  <%= render partial: "partials/unit_officers", locals: {object: @unit_officers} %>
   <%= render partial: "partials/structure1", locals: {model_name: "officer", 
                                                          primary: nil, 
                                                          secondary: "tabbed_index",
