@@ -34,6 +34,8 @@ class HomeController < ApplicationController
       @officer = current_user.officer
       @units = Unit.active.all.to_a
       @crimes = Crime.all.to_a
+      @closed_unsolved = Investigation.is_closed.unsolved.chronological.to_a.reverse.take(5)
+
 
     end
 
@@ -46,6 +48,7 @@ class HomeController < ApplicationController
         @unit_assignments.push(officer.assignments)
       end
       @unit_investigations = []
+
       @unit_assignments.each do |a| 
         #@unit_investigations.push(a.investigation)
 
@@ -71,12 +74,13 @@ class HomeController < ApplicationController
       @officer = current_user.officer
       @unit = @officer.unit
       @notes = []
-      @my_investigations = @officer.investigations.chronological.reverse
+      @my_investigations = @officer.investigations.chronological
       @my_investigations.each do |investigation|
         @investigation = investigation
         @notes.push(investigation.investigation_notes)
       end
       @recent_notes = @notes.take(3)
+      @recent_notes.flatten!
       #@criminal = Criminal.new
 
       #@officer = current_user.officer

@@ -1,3 +1,7 @@
+<%= render partial: "partials/crime_breakdown" %>
+
 <%= render partial: "partials/crime_overview", locals: {object: @crimes} %>
 
 <%= render partial: "partials/unit_overview", locals: {object: @units} %>
+
+<%= render partial: "investigations/closed_unsolved" %>

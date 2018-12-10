@@ -74,3 +74,59 @@ Highcharts.chart('container', {
 });
 
 
+
+// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Crime Breakdown'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Crimes',
+        colorByPoint: true,
+        data: [{
+            name: 'Murder',
+            y: 42.2,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Arson',
+            y: 21.84
+        }, {
+            name: 'Drugs',
+            y: 10.85
+        }, {
+            name: 'Kidnapping',
+            y: 2.67
+        }, {
+            name: 'Assualt and Battery',
+            y: 4.28
+        }, {
+            name: 'Misdemeanor',
+            y: 17.16
+        }, {
+            name: 'Crime',
+            y: 38.05
+        }]
+    }]
+});
+
+

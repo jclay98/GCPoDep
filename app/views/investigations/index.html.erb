@@ -1,4 +1,4 @@
-<% if logged_in? && current_user.role?(:commish) %>
+<% if logged_in? && current_user.role?(:commish) || logged_in? && current_user.role?(:chief) %>
 	<%= render partial: "partials/structure1", locals: {model_name: "investigation", 
                                                          primary: "tabbed_index", 
                                                          secondary: nil,

@@ -1,8 +1,8 @@
 <div class="card">
-<div class="card-content">  
-  <b>Notes:&nbsp;&nbsp;</b><br />
-    <!--% @recent_notes.each do |note| %-->
-    <% for note in @recent_notes %> 
+<div class="card-content" id="sidebar">  
+  <h5>Recent Notes:&nbsp;&nbsp;</h5><br />
+    <% @recent_notes.each do |note| %>
+    <!--% for note in @recent_notes %--> 
       <div class="card yellow lighten-4">
 		<div class="card-content">  
 	      <p class="note"><%= note.date.strftime("%m/%d/%y") %></p><br>
@@ -11,7 +11,5 @@
 		</div>
 	  </div>
     <% end %>
-    <br /><%= link_to "Add a new Note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: @officer.id) %>
-  <br /><br />
 </div>
 </div>

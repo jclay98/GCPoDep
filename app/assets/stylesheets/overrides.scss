@@ -223,6 +223,24 @@ li.no_bullet {
   text-align: right;
 }
 
+.sidebar {
+  float: right;
+  width: 40%
+}
+
+.datatable {
+  height: 400px;
+  width: 400px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.scroll {
+  height: 400px;
+  width: 400px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
 /********** TABS ********/
 .tabs .tab a.active {
   color: #2E637A;
