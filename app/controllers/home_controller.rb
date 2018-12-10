@@ -35,6 +35,7 @@ class HomeController < ApplicationController
       @units = Unit.active.all.to_a
       @crimes = Crime.all.to_a
       @closed_unsolved = Investigation.is_closed.unsolved.chronological.to_a.reverse.take(5)
+      @closed_solved = Investigation.is_closed.was_solved.chronological.to_a.reverse.take(5)
 
 
     end
